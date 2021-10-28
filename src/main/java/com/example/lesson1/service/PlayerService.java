@@ -6,13 +6,17 @@ import com.example.lesson1.dto.PlayerDTO;
 import com.example.lesson1.dto.ResponseDTO;
 import com.example.lesson1.entity.PlayerEntity;
 import com.example.lesson1.entity.PlayerStatus;
+import com.example.lesson1.entity.WeaponEntity;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.criteria.CriteriaBuilder;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -54,6 +58,31 @@ public class PlayerService {
                 .nickname(playerEntity.getNickName())
                 .id(playerEntity.getId())
                 .description(playerEntity.getProfileInfo()).build();
+    }
+
+    @PostConstruct
+    public void testUpdate() {
+        playerRepository.save(PlayerEntity.builder()
+                        .nickName("bibka-pipka")
+                        .profileInfo("test")
+                        .terminated(false)
+                        .weapons(Collections.singletonList(WeaponEntity.builder()
+                                        .broken(false)
+                                        .damage(666)
+                                        .detailedName("Automat Kalashnikova 47")
+                                        .name("AK-47")
+                                        .range(1000)
+                                .build()))
+                .build());
+    }
+
+//    @PostConstruct
+    public void testUpload() {
+        Optional<PlayerEntity> playerEntity = playerRepository.findById(1L);
+        Optional<WeaponEntity>  weaponEntity = weaponRepository.findById(1L);
+
+        Integer test = 5;
+
     }
 
 }

@@ -1,25 +1,12 @@
 package com.example.lesson1.entity;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
-import java.util.List;
+import javax.persistence.*;
 
 @Entity
 @AllArgsConstructor
@@ -27,7 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-public class Weapon {
+public class WeaponEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "weapon_seq")
@@ -44,7 +31,8 @@ public class Weapon {
 
     private Boolean broken;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "player_entity_id")
     private PlayerEntity playerEntity;
 
 }
