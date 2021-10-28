@@ -1,11 +1,9 @@
 spring:
   datasource:
-    url: "jdbc:postgresql://localhost:5432/postgres?currentSchema=onetomany"
-    username: postgres
-    password: 123
+    url: "jdbc:postgresql://ec2-34-247-151-118.eu-west-1.compute.amazonaws.com:5432/d2ma2jcq1d51kg"
+    username: ivekijruuycvcv
+    password: ddfaec91df4f26dbf978f633833cef2e2b1d32e5bd4d45f1a1701a0688bfbe0d
   jpa:
     hibernate:
       ddl-auto: create
     show-sql: true
-server:
-  port: 54320

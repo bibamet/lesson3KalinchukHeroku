@@ -32,7 +32,7 @@ public class WeaponEntity {
     private Boolean broken;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "player_entity_id")
+    @JoinColumn(name = "player_id")
     private PlayerEntity playerEntity;
 
 }
